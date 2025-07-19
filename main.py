@@ -15,7 +15,7 @@ def init_seed(seed=None):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default='diginetica', help='diginetica/Nowplaying/Tmall')
+parser.add_argument('--dataset', default='yoochoose1_64', help='diginetica/yoochoose1_64/Nowplaying/Tmall')
 parser.add_argument('--hiddenSize', type=int, default=100)
 parser.add_argument('--epoch', type=int, default=20)
 parser.add_argument('--activate', type=str, default='relu')
