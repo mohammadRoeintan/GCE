@@ -13,6 +13,10 @@ seq = pickle.load(open('datasets/' + dataset + '/all_train_seq.txt', 'rb'))
 
 if dataset == 'diginetica':
     num = 43098
+elif dataset == 'yoochoose1_64' or dataset == 'yoochoose1_4':
+    num = 37484
+elif dataset == 'yoochoose1_64_5':
+    num = 21779
 elif dataset == "Tmall":
     num = 40728
 elif dataset == "Nowplaying":
