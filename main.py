@@ -15,7 +15,7 @@ def init_seed(seed=None):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default='diginetica', help='diginetica/Nowplaying/Tmall')
+parser.add_argument('--dataset', default='diginetica', help='diginetica/yoochoose1_64/Tmall')
 parser.add_argument('--hiddenSize', type=int, default=100)
 parser.add_argument('--epoch', type=int, default=20)
 parser.add_argument('--activate', type=str, default='relu')
@@ -43,6 +43,11 @@ def main():
 
     if opt.dataset == 'diginetica':
         num_node = 43098
+        opt.n_iter = 2
+        opt.dropout_gcn = 0.2
+        opt.dropout_local = 0.0
+    elif opt.dataset == 'yoochoose1_64':
+        num_node = 37484
         opt.n_iter = 2
         opt.dropout_gcn = 0.2
         opt.dropout_local = 0.0
