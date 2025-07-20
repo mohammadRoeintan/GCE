@@ -15,7 +15,7 @@ def init_seed(seed=None):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', default='yoochoose1_64', help='diginetica/yoochoose1_64/Nowplaying/Tmall')
+parser.add_argument('--dataset', default='diginetica', help='diginetica/Nowplaying/Tmall')
 parser.add_argument('--hiddenSize', type=int, default=100)
 parser.add_argument('--epoch', type=int, default=20)
 parser.add_argument('--activate', type=str, default='relu')
@@ -46,11 +46,6 @@ def main():
         opt.n_iter = 2
         opt.dropout_gcn = 0.2
         opt.dropout_local = 0.0
-    elif opt.dataset == 'yoochoose1_64' or opt.dataset == 'yoochoose1_4':
-        num_node = 37484
-        
-    elif opt.dataset == 'yoochoose1_64_5':
-        num_node = 21779
     elif opt.dataset == 'Nowplaying':
         num_node = 60417
         opt.n_iter = 1
@@ -78,6 +73,18 @@ def main():
 
     adj, num = handle_adj(adj, num_node, opt.n_sample_all, num)
     model = trans_to_cuda(CombineGraph(opt, num_node, adj, num))
+
+    # ------------ BEGIN MODIFICATION / شروع تغییرات ------------
+    print('-------------------------------------------------------')
+    print('Model Architecture:')
+    print(model)
+    print('-------------------------------------------------------')
+    total_params = sum(p.numel() for p in model.parameters())
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f'Total Parameters: {total_params:,}')
+    print(f'Trainable Parameters: {trainable_params:,}')
+    print('-------------------------------------------------------')
+    # ------------- END MODIFICATION / پایان تغییرات -------------
 
     print(opt)
     start = time.time()
